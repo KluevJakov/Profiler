@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:file:C:/Users/Jakob/IdeaProjects/profiler/src/main/resources/profiler.db
+    url: jdbc:h2:file:C:/Users/Aorus/Desktop/Profiler/src/main/resources/profiler.db
     driverClassName: org.h2.Driver
     username: sa
     password:
