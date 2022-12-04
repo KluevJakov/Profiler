@@ -1,6 +1,7 @@
 package ru.sstu.profiler.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,10 @@ import java.util.stream.Stream;
 @Service
 @Slf4j
 public class StorageService {
+
+    @Autowired
+    public CatalogizatorService catalogizatorService;
+
     private final Path root = Paths.get("uploads");
 
     public void init() throws IOException {
@@ -32,6 +37,7 @@ public class StorageService {
             }
             log.info("Try to save file " + file.getOriginalFilename());
             Files.copy(file.getInputStream(), path.resolve(file.getOriginalFilename()),StandardCopyOption.REPLACE_EXISTING);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

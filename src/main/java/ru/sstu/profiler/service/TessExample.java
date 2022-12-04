@@ -109,8 +109,6 @@ public class TessExample {
                 }*/
 
             }
-
-
         } catch (TesseractException e) {
             e.printStackTrace();
         }
