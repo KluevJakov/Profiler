@@ -23,11 +23,9 @@ public class UserEntity implements UserDetails {
     private String surname;
     private String name;
     private String patronymic;
-    private String parentPhone;
     private String password;
     private String passwordAccept;
     private Boolean active;
-    private Integer balance;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 

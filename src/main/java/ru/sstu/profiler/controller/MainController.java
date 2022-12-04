@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class MainController {
 
     @Autowired
@@ -80,7 +81,7 @@ public class MainController {
 
         user.setPassword(encoder.encode(user.getPassword()));
         user.setPasswordAccept(null);
-        Role regRole = roleRepository.findBySystemName("STUDENT");
+        Role regRole = roleRepository.findBySystemName("OPERATOR");
         user.setRoles(new HashSet<>());
         user.getRoles().add(regRole);
         userRepository.save(user);
