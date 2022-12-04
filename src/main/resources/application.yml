@@ -10,8 +10,8 @@ spring:
       ddl-auto: update
   servlet:
     multipart:
-      max-file-size: 40960KB
-      max-request-size: 40960KB
+      max-file-size: 100000KB
+      max-request-size: 100000KB
 jwt:
   secret: helloworld
   jwtExpirationMs: 86400000
