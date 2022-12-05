@@ -44,16 +44,12 @@ public class TessExample {
 
         Tesseract tesseract = new Tesseract();
         try {
-
             tesseract.setDatapath("Tess4J/tessdata");
             tesseract.setLanguage("rus");
 
             for(int f=0; f<fold.length; f++) {
-
                 fold[f] = fold[f].replace(" ", "");
                 String text = tesseract.doOCR(new File(fold[f]));
-
-                //System.out.print(text);
 
                 ArrayList<String> words = new ArrayList<>(Arrays.asList(text.split("\n")));
 
@@ -80,13 +76,6 @@ public class TessExample {
                                 }
                             }
 
-                            System.out.println(docs.get(j));
-                            /*
-                            new File("documents/"+docs.get(j)).mkdirs();
-                            new File("documents/"+docs.get(j)+"/"+fileName).mkdirs();
-                            Path now = Paths.get(fold[f]), neww = Paths.get("documents/" + docs.get(j) + "/" + fileName + "/" + fileName +".jpg");
-                            */
-
                             new File("documents/"+fileName).mkdirs();
                             new File("documents/"+fileName+"/"+docs.get(j)).mkdirs();
                             Path now = Paths.get(fold[f]), neww = Paths.get("documents/" + fileName + "/" + docs.get(j)+ "/" + fileName +".jpg");
@@ -95,25 +84,9 @@ public class TessExample {
                         }
                     }
                 }
-
-                /*loop:
-                for (int i = 0; i < words.size(); i++) {
-                    for (int j = 0; j < surnames.size() - 1; j++) {
-                        if (words.get(i).toLowerCase().contains(surnames.get(j).toLowerCase())) {
-                            //new File("C:\\Users\\Aorus\\Desktop\\Test\\src\\володин").mkdirs();
-                            System.out.println("Word - " + words.get(i) + ": Surname - " + surnames.get(j));
-                            break loop;
-                        }
-                    }
-
-                }*/
-
             }
         } catch (TesseractException e) {
             e.printStackTrace();
         }
-
-
     }
-
 }

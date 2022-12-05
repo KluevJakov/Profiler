@@ -16,7 +16,7 @@ public class DocCategory {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Token> token;
 
 }

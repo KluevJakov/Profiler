@@ -7,12 +7,18 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
+import ru.sstu.profiler.entity.Document;
 import ru.sstu.profiler.entity.UserEntity;
+import ru.sstu.profiler.repository.DocumentRepository;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
@@ -21,7 +27,6 @@ public class StorageService {
 
     @Autowired
     public CatalogizatorService catalogizatorService;
-
     private final Path root = Paths.get("uploads");
 
     public void init() throws IOException {
@@ -36,8 +41,8 @@ public class StorageService {
                 Files.createDirectories(path);
             }
             log.info("Try to save file " + file.getOriginalFilename());
-            Files.copy(file.getInputStream(), path.resolve(file.getOriginalFilename()),StandardCopyOption.REPLACE_EXISTING);
-
+            Files.copy(file.getInputStream(), path.resolve(file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
+            catalogizatorService.parseIt(path.resolve(file.getOriginalFilename()).toFile(), currentUser);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
